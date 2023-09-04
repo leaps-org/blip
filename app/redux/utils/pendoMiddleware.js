@@ -10,10 +10,6 @@ const trackingActions = [ActionTypes.LOGIN_SUCCESS, ActionTypes.SELECT_CLINIC];
 
 const environments = {
   'dev1.dev.tidepool.org': 'dev',
-  'qa1.development.tidepool.org': 'qa1',
-  'qa2.development.tidepool.org': 'qa2',
-  'int-app.tidepool.org': 'int',
-  'external.integration.tidepool.org': 'int',
   'app.tidepool.org': 'prd',
   localhost: 'local',
 };

@@ -25,13 +25,13 @@ const featureFlags = {
   rxEnabled: false,
 };
 
+// TODO higher level config??
+const tidepoolDomain = 'tidepool.org';
+
 const environments = {
   local: 'http://localhost:31500',
-  dev: 'https://dev1.dev.tidepool.org',
-  qa1: 'https://qa1.development.tidepool.org',
-  qa2: 'https://qa2.development.tidepool.org',
-  int: 'https://int-app.tidepool.org',
-  prd: 'https://app.tidepool.org',
+  dev: `https://dev.${tidepoolDomain}`,
+  prd: `https://app.${tidepoolDomain}`,
 };
 
 const apiHost = environments.dev;

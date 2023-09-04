@@ -34,6 +34,10 @@ const nonceMiddleware = (req, res, next) => {
 
 app.use(helmet());
 
+// TODO higher level config??
+const tidepoolDomain = 'tidepool.org';
+const tidepoolAppDomain = `app.${tidepoolDomain}`;
+
 app.use(nonceMiddleware, helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'none'"],
@@ -50,10 +54,10 @@ app.use(nonceMiddleware, helmet.contentSecurityPolicy({
       'wss://tidepoolsupport.zendesk.com',
       'wss://*.zopim.com',
       (req) => {
-        return req.hostname !== 'app.tidepool.org' && "'unsafe-eval'"; //required for Pendo.io Designer
+        return req.hostname !== tidepoolAppDomain && "'unsafe-eval'"; //required for Pendo.io Designer
       },
       (req) => {
-        return req.hostname !== 'app.tidepool.org' && "'unsafe-inline'"; //required for Pendo.io Designer
+        return req.hostname !== tidepoolAppDomain && "'unsafe-inline'"; //required for Pendo.io Designer
       },
       'https://app.pendo.io',
       'https://pendo-io-static.storage.googleapis.com',
@@ -97,15 +101,15 @@ app.use(nonceMiddleware, helmet.contentSecurityPolicy({
       'wss://tidepoolsupport.zendesk.com',
       'https://api.rollbar.com',
       'wss://*.zopim.com',
-      '*.tidepool.org',
-      '*.development.tidepool.org',
-      '*.integration.tidepool.org',
-      'http://*.integration-test.tidepool.org',
+      `*.${tidepoolDomain}`,
+      `*.development.${tidepoolDomain}`,
+      `*.integration.${tidepoolDomain}`,
+      `http://*.integration-test.${tidepoolDomain}`,
       'https://app.pendo.io',
       'https://data.pendo.io',
       'https://pendo-static-5707274877534208.storage.googleapis.com',
     ]).filter(src => src !== undefined),
-    frameAncestors: ['https://app.pendo.io', '*.tidepool.org', 'localhost:*']
+    frameAncestors: ['https://app.pendo.io',  `*.${tidepoolDomain}`, 'localhost:*']
   },
   reportOnly: false,
 }));
