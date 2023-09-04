@@ -35,7 +35,7 @@ const nonceMiddleware = (req, res, next) => {
 app.use(helmet());
 
 // TODO higher level config??
-const tidepoolDomain = 'tidepool.org';
+const tidepoolDomain = 'tidepool.nz';
 const tidepoolAppDomain = `app.${tidepoolDomain}`;
 
 app.use(nonceMiddleware, helmet.contentSecurityPolicy({
@@ -90,7 +90,7 @@ app.use(nonceMiddleware, helmet.contentSecurityPolicy({
     objectSrc: ['blob:'],
     workerSrc: ["'self'", 'blob:'],
     childSrc: ["'self'", 'blob:', 'https://docs.google.com', 'https://app.pendo.io'],
-    frameSrc: ['https://docs.google.com', 'https://app.pendo.io', '*.tidepool.org', 'localhost:*', 'tidepooluploader://*'],
+    frameSrc: ['https://docs.google.com', 'https://app.pendo.io', `*.${tidepoolDomain}`, 'localhost:*', 'tidepooluploader://*'],
     connectSrc: [].concat([
       process.env.API_HOST || 'localhost:*',
       process.env.REALM_HOST,
