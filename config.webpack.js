@@ -6,7 +6,7 @@ const cp = require('child_process');
 const isDev = (process.env.NODE_ENV === 'development');
 
 const VERSION = pkg.version;
-const ROLLBAR_POST_CLIENT_TOKEN = '7e29ff3610ab407f826307c8f5ad386f';
+const ROLLBAR_POST_CLIENT_TOKEN = '';
 
 const VERSION_SHA = process.env.TRAVIS_COMMIT
   || cp.execSync('git rev-parse HEAD || true', { cwd: __dirname, encoding: 'utf8' });
